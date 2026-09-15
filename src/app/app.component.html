@@ -1,0 +1,695 @@
+<div
+  class="relative min-h-screen bg-[#09090B] text-[#F5F5F2] selection:bg-[#E5094C]/30 selection:text-white"
+>
+  <div
+    *ngIf="isLoading"
+    class="fixed inset-0 z-50 bg-[#09090B] flex flex-col items-center justify-center space-y-4 pointer-events-none splash-screen"
+  >
+    <div class="text-center space-y-2 flex flex-col items-center">
+      <div
+        class="font-heading text-2xl sm:text-3xl font-extrabold text-[#F5F5F2] tracking-tight"
+      >
+        VDO<span class="text-[#FF2A6D] ml-1">XPERTS</span>
+      </div>
+      <div
+        class="text-[10px] font-mono tracking-[0.25em] text-[#A1A1AA] uppercase mt-1"
+      >
+        POST-PRODUCTION FOR FILMMAKERS
+      </div>
+    </div>
+    <div class="w-28 h-[2px] bg-white/10 overflow-hidden relative rounded-full">
+      <div class="w-full h-full bg-[#E5094C] loading-bar"></div>
+    </div>
+  </div>
+
+  <header
+    class="fixed top-0 left-0 right-0 z-40 transition-all duration-500"
+    [class]="
+      isScrolled
+        ? 'fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-[#09090B]/92 backdrop-blur-md border-b border-white/10 py-3.5 shadow-2xl'
+        : 'fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-transparent py-5 border-b border-transparent'
+    "
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between"
+    >
+      <a
+        href="#"
+        (click)="$event.preventDefault(); scrollTo('#hero')"
+        class="group flex items-center focus:outline-none"
+      >
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1 leading-none">
+            <span
+              class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-white"
+              >VDO</span
+            ><span
+              class="font-heading font-extrabold text-lg sm:text-xl tracking-wider text-[#E5094C] group-hover:text-[#FF2A6D] transition-colors"
+              >XPERTS</span
+            >
+          </div>
+          <span
+            class="text-[9px] font-mono tracking-[0.22em] text-[#8E8E93] uppercase mt-0.5"
+            >POST-PRODUCTION</span
+          >
+        </div>
+      </a>
+      <nav
+        class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.14em] font-medium text-[#A1A1AA]"
+      >
+        <a
+          *ngFor="
+            let link of [
+              { label: 'PACKAGES', id: '#packages' },
+              { label: 'ADVANTAGE', id: '#why-us' },
+              { label: 'PHILOSOPHY', id: '#philosophy' },
+              { label: 'CONTACT', id: '#contact' },
+            ]
+          "
+          [href]="link.id"
+          (click)="$event.preventDefault(); scrollTo(link.id)"
+          class="hover:text-white transition-colors"
+          >{{ link.label }}</a
+        >
+      </nav>
+      <div class="flex items-center gap-4">
+        <button
+          (click)="startProject()"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-[#E5094C] hover:bg-[#FF1E56] text-white font-heading font-semibold text-xs tracking-[0.12em] uppercase transition-all shadow-lg shadow-[#E5094C]/25"
+        >
+          START A PROJECT <span>↗</span></button
+        ><button
+          (click)="mobileMenuOpen = !mobileMenuOpen"
+          class="lg:hidden p-2 text-[#F5F5F2] hover:text-[#E5094C] text-xl"
+          aria-label="Toggle navigation menu"
+        >
+          {{ mobileMenuOpen ? "×" : "☰" }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div
+    *ngIf="mobileMenuOpen"
+    class="fixed inset-0 z-30 bg-[#09090B]/98 backdrop-blur-xl lg:hidden flex flex-col justify-between pt-28 pb-10 px-8"
+  >
+    <div class="flex flex-col space-y-6">
+      <span class="text-xs uppercase tracking-[0.2em] text-[#FF2A6D] font-mono"
+        >// Navigation</span
+      ><a
+        *ngFor="
+          let link of [
+            { label: 'PACKAGES', id: '#packages' },
+            { label: 'ADVANTAGE', id: '#why-us' },
+            { label: 'PHILOSOPHY', id: '#philosophy' },
+            { label: 'CONTACT', id: '#contact' },
+          ]
+        "
+        [href]="link.id"
+        (click)="$event.preventDefault(); scrollTo(link.id)"
+        class="font-heading text-2xl font-bold text-[#F5F5F2] border-b border-white/5 pb-3"
+        >{{ link.label }}</a
+      >
+    </div>
+    <div class="space-y-4">
+      <button
+        (click)="startProject()"
+        class="w-full py-4 rounded-sm bg-[#E5094C] text-white font-heading font-bold text-sm tracking-[0.14em] uppercase"
+      >
+        START A PROJECT
+      </button>
+      <div class="text-center text-xs text-[#71717A] font-mono">
+        {{ contactEmail }}
+      </div>
+    </div>
+  </div>
+
+  <main id="hero">
+    <section
+      class="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#09090B] pt-24 pb-16"
+    >
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop"
+          class="w-full h-full object-cover opacity-30 scale-105"
+        >
+          <source
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#09090B] via-[#09090B]/75 to-[#09090B]/50"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[#09090B]/90 via-transparent to-[#09090B]/90"
+        ></div>
+        <div class="absolute inset-0 film-grain opacity-40"></div>
+      </div>
+      <div
+        class="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center flex flex-col items-center"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-[#E5094C]/30 text-xs tracking-[0.18em] uppercase text-[#A1A1AA] mb-8"
+        >
+          <b class="text-white">VDO XPERTS</b
+          ><span class="text-[#71717A]">•</span
+          ><span class="text-[#FF2A6D] font-mono"
+            >POST-PRODUCTION FOR FILMMAKERS</span
+          >
+        </div>
+        <h1
+          class="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08] max-w-4xl"
+        >
+          Video Editing <br class="hidden sm:inline" />
+          <span class="font-editorial italic font-normal">for</span>
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FF4D7E] to-[#E5094C]"
+            >Wedding Filmmakers</span
+          >
+        </h1>
+        <p
+          class="mt-6 md:mt-8 font-body text-base sm:text-lg md:text-xl text-[#A1A1AA] max-w-2xl leading-relaxed"
+        >
+          We transform raw wedding footage into cinematic, story-driven films,
+          helping filmmakers save time, maintain consistent quality, and deliver
+          work their couples will treasure forever.
+        </p>
+        <div class="mt-10 w-full max-w-3xl relative">
+          <div
+            class="relative rounded-xl overflow-hidden border border-white/15 bg-[#101014] shadow-2xl"
+          >
+            <div class="relative aspect-[16/9] w-full overflow-hidden">
+              <img
+                [src]="heroImage"
+                alt="Cinematic Wedding Filmmaking Master Frame"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-12 flex flex-wrap justify-center gap-4 text-xs font-mono text-[#71717A] tracking-wider uppercase border-t border-white/10 pt-6 w-full max-w-2xl"
+        >
+          Professional Editing <span>•</span> Color Grading <span>•</span> Audio
+          Mastering <span>•</span> Storytelling
+        </div>
+      </div>
+      <button
+        (click)="scrollTo('#trial-section')"
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#FF2A6D] text-xs font-mono tracking-[0.2em] uppercase"
+      >
+        SCROLL TO EXPLORE ↓
+      </button>
+    </section>
+
+    <section
+      id="trial-section"
+      class="relative py-20 bg-[#0E0E11] border-y border-white/5"
+    >
+      <div class="max-w-6xl mx-auto px-6 md:px-12">
+        <div
+          class="rounded-xl bg-gradient-to-b from-[#18181D] to-[#121215] border border-[#E5094C]/30 p-8 sm:p-12 md:p-14"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-4">
+              <div
+                class="inline-flex px-3 py-1 rounded-sm bg-[#E5094C]/15 border border-[#E5094C]/30 text-[#FF2A6D] text-xs font-mono tracking-[0.2em] uppercase"
+              >
+                ✦ FIRST PROJECT GUARANTEE
+              </div>
+              <h2
+                class="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold"
+              >
+                Experience the magic of
+                <span class="font-editorial italic font-normal text-[#FF4D7E]"
+                  >just one project.</span
+                >
+              </h2>
+              <p class="font-heading text-lg text-[#F5F5F2]">
+                Let our expertise leave you speechless.
+              </p>
+              <p class="font-body text-base text-[#A1A1AA] leading-relaxed">
+                Send us your first wedding video editing project. If you’re not
+                100% satisfied with the results, you don’t pay. Zero risk, no
+                obligations, just pure cinematic storytelling.
+              </p>
+            </div>
+            <div
+              class="lg:col-span-4 p-6 rounded-lg bg-[#1E1E24] border border-white/10 flex flex-col items-center text-center space-y-4"
+            >
+              <div class="text-3xl">◉</div>
+              <div class="font-heading text-xl font-bold uppercase">
+                100% Risk-Free
+              </div>
+              <div class="text-xs text-[#71717A] font-mono">
+                No Upfront Commitment
+              </div>
+              <button
+                (click)="startProject('Risk-Free First Trial Project')"
+                class="w-full py-3.5 rounded-sm bg-[#E5094C] text-white font-heading font-bold text-xs tracking-[0.14em] uppercase"
+              >
+                START YOUR FIRST PROJECT →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages" class="py-28 bg-[#101014] border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div
+            class="text-xs font-mono tracking-[0.2em] uppercase text-[#FF2A6D]"
+          >
+            // Wedding Editing Packages
+          </div>
+          <h2
+            class="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase"
+          >
+            THE FILM, YOUR WAY.
+          </h2>
+          <p
+            class="font-body text-base sm:text-lg text-[#A1A1AA] leading-relaxed"
+          >
+            From a 60-second teaser to a full-length wedding story, we shape
+            every edit around the footage, emotion, and your studio’s creative
+            vision.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          <article
+            *ngFor="let pkg of packages"
+            class="group rounded-xl bg-[#18181D] border border-white/10 hover:border-[#E5094C]/40 p-8 flex flex-col justify-between transition-all hover:-translate-y-1.5"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="font-mono text-sm font-bold text-[#FF2A6D] bg-[#E5094C]/15 px-2.5 py-1"
+                  >PACKAGE {{ pkg.number }}</span
+                ><span class="text-xs font-mono text-[#71717A]"
+                  >◷ {{ pkg.duration }}</span
+                >
+              </div>
+              <h3 class="font-heading text-2xl font-bold text-[#F5F5F2] mb-2">
+                {{ pkg.name }}
+              </h3>
+              <p class="font-editorial italic text-base text-[#FF4D7E] mb-4">
+                {{ pkg.tagline }}
+              </p>
+              <p
+                class="font-body text-xs sm:text-sm text-[#A1A1AA] leading-relaxed mb-6"
+              >
+                {{ pkg.description }}
+              </p>
+              <div class="space-y-2 mb-6 border-t border-white/5 pt-4">
+                <div
+                  *ngFor="let item of pkg.deliverables.slice(0, 3)"
+                  class="flex items-start gap-2 text-xs text-[#F5F5F2]/85"
+                >
+                  ✓ <span>{{ item }}</span>
+                </div>
+              </div>
+            </div>
+            <button
+              (click)="startProject(pkg.name)"
+              class="w-full py-3 rounded-sm bg-[#E5094C] text-white font-heading font-bold text-xs uppercase tracking-[0.14em]"
+            >
+              GET A CUSTOM QUOTE ↗
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-28 bg-[#101014] border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div
+            class="text-xs font-mono tracking-[0.2em] uppercase text-[#FF2A6D]"
+          >
+            // The Difference
+          </div>
+          <h2
+            class="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase"
+          >
+            THE RIGHT EDITOR
+          </h2>
+          <p class="font-editorial italic text-xl text-[#FF4D7E]">
+            Because the right edit can change everything.
+          </p>
+          <p class="font-body text-base text-[#A1A1AA] leading-relaxed">
+            Great footage captures the moment. Great editing gives it meaning.
+            We carefully shape every frame, sound, and transition to create
+            films that feel natural, engaging, and true to the story.
+          </p>
+        </div>
+        <div
+          class="max-w-5xl mx-auto rounded-xl overflow-hidden border border-white/10 shadow-2xl"
+        >
+          <img
+            [src]="timelineImage"
+            alt="Professional Wedding Edit Multi-Cam Master Timeline"
+            class="w-full aspect-video object-cover"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="py-28 bg-[#09090B]">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-16 space-y-3 max-w-2xl">
+          <div
+            class="text-xs font-mono tracking-[0.2em] uppercase text-[#FF2A6D]"
+          >
+            // The VDO XPERTS Advantage
+          </div>
+          <h2
+            class="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase"
+          >
+            WHY FILMMAKERS CHOOSE US.
+          </h2>
+          <p class="font-body text-base sm:text-lg text-[#A1A1AA]">
+            Built by creatives for creatives. We provide the stability, speed,
+            and craftsmanship needed to scale your filmmaking business.
+          </p>
+        </div>
+        <div class="divide-y divide-white/10 border-y border-white/10">
+          <div
+            *ngFor="let item of advantages"
+            class="py-6 sm:py-8 px-4 sm:px-6"
+          >
+            <div
+              class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center"
+            >
+              <div
+                class="md:col-span-2 font-mono text-2xl font-bold text-[#FF2A6D]"
+              >
+                {{ item.number }}
+              </div>
+              <div
+                class="md:col-span-4 font-heading text-xl sm:text-2xl font-bold"
+              >
+                {{ item.title }}
+              </div>
+              <div
+                class="md:col-span-6 font-body text-sm sm:text-base text-[#A1A1AA] leading-relaxed"
+              >
+                {{ item.explanation }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy" class="py-32 bg-[#09090B] border-t border-white/5">
+      <div class="max-w-5xl mx-auto px-6 md:px-12 text-center space-y-12">
+        <div
+          class="text-xs font-mono tracking-[0.2em] uppercase text-[#FF2A6D]"
+        >
+          // Our Core Philosophy
+        </div>
+        <h2
+          class="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-tight"
+        >
+          WE DON’T JUST EDIT FOOTAGE.<br /><span
+            class="font-editorial italic font-normal text-[#FF4D7E] capitalize"
+            >We build stories.</span
+          >
+        </h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-white/10"
+        >
+          <div class="space-y-2 p-4">
+            <span class="font-mono text-xs text-[#FF2A6D] uppercase"
+              >01 / Intent</span
+            >
+            <p class="font-heading text-lg font-bold">
+              Every cut has a purpose.
+            </p>
+            <p class="text-xs text-[#A1A1AA]">
+              No filler shots or mindless montage assembly.
+            </p>
+          </div>
+          <div
+            class="space-y-2 p-4 border-t md:border-t-0 md:border-x border-white/10"
+          >
+            <span class="font-mono text-xs text-[#FF2A6D] uppercase"
+              >02 / Atmosphere</span
+            >
+            <p class="font-heading text-lg font-bold">
+              Every sound has a place.
+            </p>
+            <p class="text-xs text-[#A1A1AA]">
+              Meticulous dialogue clarity and acoustic resonance.
+            </p>
+          </div>
+          <div class="space-y-2 p-4">
+            <span class="font-mono text-xs text-[#FF2A6D] uppercase"
+              >03 / Emotion</span
+            >
+            <p class="font-heading text-lg font-bold">
+              Every frame has a feeling.
+            </p>
+            <p class="text-xs text-[#A1A1AA]">
+              Color science that evokes nostalgia and romance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-28 bg-[#0C0C0F] border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-3">
+              <div
+                class="text-xs font-mono tracking-[0.2em] uppercase text-[#FF2A6D]"
+              >
+                // Start A Project
+              </div>
+              <h2
+                class="font-heading text-3xl sm:text-5xl font-extrabold uppercase"
+              >
+                LET’S CREATE <br /><span
+                  class="font-editorial italic font-normal text-[#FF4D7E]"
+                  >Something Incredible.</span
+                >
+              </h2>
+              <p class="font-body text-base text-[#A1A1AA] leading-relaxed">
+                Ready to outsource your editing and reclaim your weekends? Tell
+                us about your upcoming weddings or creative projects.
+              </p>
+            </div>
+            <div
+              class="p-6 rounded-xl bg-[#141418] border border-white/10 space-y-4"
+            >
+              <div
+                class="text-xs font-mono uppercase tracking-wider text-[#71717A]"
+              >
+                Direct Inquiries
+              </div>
+              <div
+                class="flex items-center justify-between p-3 rounded-lg bg-[#0E0E12] border border-white/5"
+              >
+                <span class="flex items-center gap-3"
+                  ><span class="text-[#FF2A6D]">✉</span
+                  ><span class="text-sm font-mono">{{
+                    contactEmail
+                  }}</span></span
+                ><button (click)="copyEmail()" class="text-xs text-[#A1A1AA]">
+                  {{ copiedEmail ? "Copied" : "Copy" }}
+                </button>
+              </div>
+              <p class="text-xs text-[#71717A]">
+                We typically respond within 12–24 business hours with custom
+                quote options and cloud upload onboarding.
+              </p>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div
+              class="rounded-xl bg-[#141418] border border-white/10 p-8 sm:p-10"
+            >
+              <div
+                *ngIf="submittedSuccess; else inquiryFormTemplate"
+                class="py-12 text-center space-y-6"
+              >
+                <div class="text-5xl text-[#FF2A6D]">✓</div>
+                <h3
+                  class="font-heading text-2xl sm:text-3xl font-extrabold uppercase"
+                >
+                  THANK YOU. YOUR PROJECT IS NOW ON OUR RADAR.
+                </h3>
+                <p class="font-body text-base text-[#A1A1AA]">
+                  We’ve logged your specifications. A senior post-production
+                  lead will review your details and reach out via email within
+                  24 hours.
+                </p>
+                <div
+                  class="p-4 rounded bg-[#0E0E12] text-left text-xs font-mono space-y-1"
+                >
+                  <div class="text-[#FF2A6D] font-bold">
+                    Submission Details Summary:
+                  </div>
+                  <div class="text-[#A1A1AA]">
+                    Phone: {{ inquiryForm.value.phone || "Not provided" }}
+                  </div>
+                  <div class="text-[#A1A1AA]">
+                    Email: {{ inquiryForm.value.email }}
+                  </div>
+                  <div class="text-[#A1A1AA]">
+                    Portfolio:
+                    {{ inquiryForm.value.website || "Not provided" }}
+                  </div>
+                </div>
+                <button
+                  (click)="resetInquiry()"
+                  class="px-6 py-2.5 bg-white/5 text-xs font-mono uppercase text-[#A1A1AA]"
+                >
+                  Submit Another Inquiry
+                </button>
+              </div>
+              <ng-template #inquiryFormTemplate
+                ><form
+                  [formGroup]="inquiryForm"
+                  (ngSubmit)="submitInquiry()"
+                  class="space-y-6"
+                >
+                  <div
+                    *ngIf="prefilledProject"
+                    class="p-3 rounded bg-[#E5094C]/15 border border-[#E5094C]/30 text-xs font-mono text-[#FF4D7E]"
+                  >
+                    Selected Package / Focus: {{ prefilledProject }}
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <label class="space-y-1.5"
+                      ><span class="text-xs font-mono text-[#A1A1AA] uppercase"
+                        >Email Address *</span
+                      ><input
+                        type="email"
+                        formControlName="email"
+                        required
+                        placeholder="hello@yourstudio.com"
+                        class="w-full px-4 py-3 rounded-sm bg-[#0E0E12] border border-white/10 text-sm text-[#F5F5F2]" /></label
+                    ><label class="space-y-1.5"
+                      ><span class="text-xs font-mono text-[#A1A1AA] uppercase"
+                        >WhatsApp / Phone</span
+                      ><input
+                        type="text"
+                        formControlName="phone"
+                        placeholder="+1 (555) 000-0000"
+                        class="w-full px-4 py-3 rounded-sm bg-[#0E0E12] border border-white/10 text-sm text-[#F5F5F2]"
+                    /></label>
+                  </div>
+                  <label class="space-y-1.5"
+                    ><span class="text-xs font-mono text-[#A1A1AA] uppercase"
+                      >Studio Website / Instagram Portfolio Link</span
+                    ><input
+                      type="text"
+                      formControlName="website"
+                      placeholder="https://instagram.com/yourstudiocinema"
+                      class="w-full px-4 py-3 rounded-sm bg-[#0E0E12] border border-white/10 text-sm text-[#F5F5F2]"
+                  /></label>
+                  <div
+                    *ngIf="errorMessage"
+                    class="p-3 rounded bg-red-900/30 border border-red-500/40 text-xs font-mono text-red-200"
+                  >
+                    {{ errorMessage }}
+                  </div>
+                  <button
+                    type="submit"
+                    [disabled]="isSubmitting"
+                    class="inquiry-submit-button w-full py-4 rounded-sm bg-[#E5094C] disabled:opacity-50 text-white font-heading font-bold text-xs tracking-[0.14em] uppercase"
+                  >
+                    {{
+                      isSubmitting
+                        ? "TRANSMITTING INQUIRY..."
+                        : "SEND PROJECT INQUIRY"
+                    }}
+                  </button>
+                </form></ng-template
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer
+    class="bg-[#070709] text-[#A1A1AA] pt-20 pb-12 border-t border-white/10"
+  >
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-white/10"
+      >
+        <div class="md:col-span-5 space-y-4">
+          <div class="font-heading font-extrabold text-xl text-white">
+            VDO<span class="text-[#FF2A6D]">XPERTS</span>
+          </div>
+          <p class="text-sm max-w-sm leading-relaxed">
+            Wedding Video Editing & Post-Production for Filmmakers. Transforming
+            raw footage into cinematic, story-driven films.
+          </p>
+          <div class="font-editorial italic text-base text-[#FF4D7E]">
+            "You shoot the moments. We shape the story."
+          </div>
+        </div>
+        <div class="md:col-span-3 space-y-3">
+          <div
+            class="text-xs font-mono text-[#F5F5F2] uppercase tracking-wider"
+          >
+            Quick Navigation
+          </div>
+          <div class="space-y-2 text-sm">
+            <a
+              *ngFor="
+                let link of [
+                  { label: 'Packages', id: '#packages' },
+                  { label: 'Advantage', id: '#why-us' },
+                  { label: 'Philosophy', id: '#philosophy' },
+                  { label: 'Contact', id: '#contact' },
+                ]
+              "
+              [href]="link.id"
+              (click)="$event.preventDefault(); scrollTo(link.id)"
+              class="block hover:text-[#FF2A6D]"
+              >{{ link.label }}</a
+            >
+          </div>
+        </div>
+        <div class="md:col-span-4 space-y-4">
+          <div
+            class="text-xs font-mono text-[#F5F5F2] uppercase tracking-wider"
+          >
+            Connect & Inquiries
+          </div>
+          <a
+            [href]="'mailto:' + contactEmail"
+            class="text-sm text-[#F5F5F2] font-mono"
+            >✉ {{ contactEmail }}</a
+          >
+        </div>
+      </div>
+      <div
+        class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#71717A]"
+      >
+        <div>© {{ currentYear }} VDO XPERTS. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <button>Privacy Policy</button><button>Terms of Service</button
+          ><button (click)="scrollTo('#hero')">Back to Top ↑</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

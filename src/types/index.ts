@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   filmmaker: string;
   location: string;
-  category: 'highlights' | 'feature' | 'teasers' | 'documentary' | 'commercial';
+  category: "highlights" | "feature" | "teasers" | "documentary" | "commercial";
   categoryLabel: string;
   duration: string;
   camera: string;
@@ -77,16 +77,8 @@ export interface Industry {
   typicalDeliverables: string[];
 }
 
-export interface ProjectInquiryData {
-  name: string;
-  company: string;
+export interface ContactInquiryData {
   email: string;
   phone: string;
   website: string;
-  projectType: string;
-  deliverables: string[];
-  estimatedVolume: string;
-  turnaroundSpeed: string;
-  footageLink: string;
-  message: string;
 }

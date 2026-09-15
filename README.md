@@ -1,20 +1,24 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# VDO XPERTS Angular Application
 
-# Run and deploy your AI Studio app
+Angular single-page website for VDO XPERTS wedding video editing and post-production services.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/9ffd0cb9-1ede-498a-9152-ec9b93777c46
+Prerequisites: Node.js 20.19+, 22.12+, or 24+.
 
-## Run Locally
+```bash
+npm install
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+Open `http://localhost:3000`.
 
+The contact form submits JSON to `http://localhost:8080/api/inquiries`. Update the endpoint in `src/app/inquiry.service.ts` when the backend is hosted.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Build
+
+```bash
+npm run build
+```
+
+The production output is written to `dist/vdo-xperts`.

@@ -1,0 +1,27 @@
+.splash-screen {
+  animation: splash-fade 500ms ease-in-out 500ms forwards;
+}
+
+.loading-bar {
+  animation: loading-slide 800ms ease-in-out infinite;
+}
+
+.inquiry-submit-button {
+  margin-top: 2rem;
+}
+
+@keyframes splash-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes loading-slide {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}

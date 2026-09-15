@@ -1,0 +1,6 @@
+{
+  "name": "VDO XPERTS - Wedding Video Editing & Post-Production",
+  "description": "VDO Xperts provides professional wedding video editing and post-production for filmmakers, production houses, and creators. Transform your footage into cinematic, story-driven films.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

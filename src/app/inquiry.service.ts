@@ -35,7 +35,7 @@ export class InquiryService {
         message:
           error?.error?.message ||
           error?.message ||
-          "Submission failed. Please email us directly at vdoxperts@gmail.com",
+          "Submission failed. Please email us directly at contact@vdoxperts.com",
       };
     }
   }

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   readonly packages = PACKAGES_DATA;
   readonly advantages = WHY_CHOOSE_US_DATA;
-  readonly contactEmail = "vdoxperts@gmail.com";
+  readonly contactEmail = "contact@vdoxperts.com";
   readonly heroImage =
     "/assets/images/wedding_hero_cinematic_1788246762883.jpg";
   readonly timelineImage = "/assets/images/premiere_timeline_1788243590820.jpg";

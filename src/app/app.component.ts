@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   readonly contactEmail = "contact@vdoxperts.com";
   readonly heroImage =
     "/assets/images/wedding_hero_cinematic_1788246762883.jpg";
-  readonly timelineImage = "/assets/images/premiere_timeline_1788243590820.jpg";
+  readonly timelineImage = "/assets/images/Timeline.png";
   readonly inquiryForm = this.formBuilder.nonNullable.group({
     email: ["", [Validators.required, Validators.email]],
     phone: [""],
